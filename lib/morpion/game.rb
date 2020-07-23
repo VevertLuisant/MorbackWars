@@ -6,10 +6,10 @@
 		  @board = Board.new
 		  @game_on = true
 		end
-		def welcome_message
+		def message_bienvenue
 			
 		puts " -" * 24
-		puts "|       'Bienvenue sur MORBACK WARS!		      |"
+		puts "|       'Bienvenue sur MORBACK WARS!'		|"
 		puts "|  A la verticale, l'horizontale ou en diago'   |"
 		puts "|                 Toi aussi,                    |"
 		puts "|          HUMILIE TON ADVERSAIRE !!!           |"
@@ -43,7 +43,7 @@
 		end
 	  
 		def play
-		  welcome_message
+		  message_bienvenue
 	  
 		  player1 = Player.new('Joueur 1')
 		  player1.player_name
