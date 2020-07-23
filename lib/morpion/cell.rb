@@ -5,8 +5,8 @@ class Cell
   
     def initialize(id=nil, position=nil)
       @id = id
-      @marker = nil
       @position = position
+       @marker = nil 
     end
   
     def content
