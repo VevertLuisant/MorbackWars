@@ -20,6 +20,8 @@ class Board
   
     end
   
+  # A partir de là, il est important de définir dans quel configuration le joueur gagne:
+  
     def winning_position(player)
       line = win_line(player)
       col = win_column(player)
@@ -47,6 +49,7 @@ class Board
       [diag1, diag2].any?
     end
   
+  # methode qui organise l'enregistrement des choix du joueur:
     def choose_cell(player)
       puts "#{player.name.capitalize} Choisis un chiffre allant de 1 à 9. Prends garde à ce qu'il soit disponible "
       position = gets.chomp.to_i
@@ -67,7 +70,7 @@ class Board
       if find_cell.marker == nil
         find_cell.marker = player.marker
       else
-        puts "La case est déjà prise, triple buse! Recommence..."
+        puts "La case est déjà prise, triple buse! Recommence..." # eh oui, il est important de ne pas faire de doublon sur les choix
         choose_cell(player)
       end
       
@@ -76,7 +79,7 @@ class Board
     def reset
       @cell_grid = []
       id = 1
-      (0..2).each do |row|
+      (0..2).each do |line|
         current_line = []
         (0..2).each do |column|
           current_line.push(Cell.new(id))
