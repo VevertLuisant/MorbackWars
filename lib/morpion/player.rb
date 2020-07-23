@@ -14,7 +14,7 @@ class Player
 	  @name = name
   
 	end
-	def random_player(*args)
+	def random_player(*args) # méthode pour tirer au sort le joueur qui commence (merci stackoverflow et toute la doc Github...)
 		args.shuffle
 	  end
   
