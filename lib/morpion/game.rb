@@ -26,8 +26,8 @@
 			@game_on = false
 		  end
 		  game_tied = true
-		  @board.cell_grid.each do |row|
-			if row.any? { |x| x.marker == nil }
+		  @board.cell_grid.each do |line|
+			if line.any? { |x| x.marker == nil }
 			  game_tied = false
 			  break
 			end
