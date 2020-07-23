@@ -6,14 +6,14 @@ class Board
     end
   
     def draw
-      row = cell_grid[0]
-      puts "#{row[0].content} | #{row[1].content} | #{row[2].content}"
+      line = cell_grid[0]
+      puts "#{line[0].content} | #{line[1].content} | #{line[2].content}"
       puts "---------"
-      row = cell_grid[1]
-      puts "#{row[0].content} | #{row[1].content} | #{row[2].content}"
+      line = cell_grid[1]
+      puts "#{line[0].content} | #{line[1].content} | #{line[2].content}"
       puts "---------"
-      row = cell_grid[2]
-      puts "#{row[0].content} | #{row[1].content} | #{row[2].content}"
+      line = cell_grid[2]
+      puts "#{line[0].content} | #{line[1].content} | #{line[2].content}"
     end
   
     def display_board
@@ -21,17 +21,17 @@ class Board
     end
   
     def winning_position(player)
-      row = win_row(player)
+      line = win_line(player)
       col = win_column(player)
-      dia = win_diagonal(player)
-      [row, col, dia].any?
+      diag = win_diagonal(player)
+      [line, col, diag].any?
     end
   
-    def win_row(player)
-        row1 = [@cell_grid[0][0], @cell_grid[0][1], @cell_grid[0][2]].all? {|x| x.marker == player.marker}
-        row2 = [@cell_grid[1][0], @cell_grid[1][1], @cell_grid[1][2]].all? {|x| x.marker == player.marker}
-        row3 = [@cell_grid[2][0], @cell_grid[2][1], @cell_grid[2][2]].all? {|x| x.marker == player.marker}
-        [row1, row2, row3].any?
+    def win_line(player)
+        line1 = [@cell_grid[0][0], @cell_grid[0][1], @cell_grid[0][2]].all? {|x| x.marker == player.marker}
+        line2 = [@cell_grid[1][0], @cell_grid[1][1], @cell_grid[1][2]].all? {|x| x.marker == player.marker}
+        line3 = [@cell_grid[2][0], @cell_grid[2][1], @cell_grid[2][2]].all? {|x| x.marker == player.marker}
+        [line1, line2, line3].any?
     end
   
     def win_column(player)
@@ -42,9 +42,9 @@ class Board
     end
   
     def win_diagonal(player)
-      dia1 = [@cell_grid[0][0], @cell_grid[1][1], @cell_grid[2][2]].all? {|x| x.marker == player.marker}
-      dia2 = [@cell_grid[0][2], @cell_grid[1][1], @cell_grid[2][0]].all? {|x| x.marker == player.marker}
-      [dia1, dia2].any?
+      diag1 = [@cell_grid[0][0], @cell_grid[1][1], @cell_grid[2][2]].all? {|x| x.marker == player.marker}
+      diag2 = [@cell_grid[0][2], @cell_grid[1][1], @cell_grid[2][0]].all? {|x| x.marker == player.marker}
+      [diag1, diag2].any?
     end
   
     def choose_cell(player)
@@ -55,8 +55,8 @@ class Board
         position = gets.chomp.to_i
       end
       find_cell = nil
-      @cell_grid.each do |row|
-        find_cell = row.select do |x|
+      @cell_grid.each do |line|
+        find_cell = line.select do |x|
           x.id == position
         end
         find_cell = find_cell.first
@@ -77,12 +77,12 @@ class Board
       @cell_grid = []
       id = 1
       (0..2).each do |row|
-        current_row = []
+        current_line = []
         (0..2).each do |column|
-          current_row.push(Cell.new(id))
+          current_line.push(Cell.new(id))
           id += 1
         end
-        cell_grid.push(current_row)
+        cell_grid.push(current_line)
       end
     end
   end
